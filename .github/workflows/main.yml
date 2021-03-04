@@ -1,15 +1,16 @@
 # bare minimal
 name: googlesheet
 
-on:
-    workflow_dispatch:
-      inputs:
+on: 
+  workflow_dispatch:
+    inputs:
       logLevel:
         description: 'Log level'     
         required: true
         default: 'warning'
       tags:
         description: 'Test scenario tags'  
+The triggered workflow receives the inputs in the  
 
 jobs:
     fetch:
