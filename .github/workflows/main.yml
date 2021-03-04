@@ -9,9 +9,7 @@ on:
         required: true
         default: 'warning'
       tags:
-        description: 'Test scenario tags'  
-The triggered workflow receives the inputs in the  
-
+        description: 'Test scenario tags'
 jobs:
     fetch:
       runs-on: ubuntu-latest
