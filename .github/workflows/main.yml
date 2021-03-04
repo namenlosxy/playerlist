@@ -1,27 +1,25 @@
-name: Python package
+# bare minimal
+name: googlesheet
 
-on: [push]
+on:
+    push:
+      branches:
+        - master
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: upgrade pip
-      run: |
-        python -m pip install --upgrade pip
-    - name: Dependencies
-      run: |
-        pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-    - name: run
-      run: |
-        python getData.py
+    fetch:
+      runs-on: ubuntu-latest
+      steps:
+        - id: googlesheet_actions
+          uses: rjoydip/googlesheet-actions@0.1.1
+          with:
+            sheet-id: ${{ secrets.SHEET_ID }}
+        - id: echo
+          uses: actions/github-script@v2
+          with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+                console.log(${{steps.googlesheet_actions.outputs.result}})
+        - name: test
+          run: |
+            cat $HOME/data.json
