@@ -28,11 +28,11 @@ jobs:
         uses: dibenlloch/google-sheets-secrets-action@v1.0.2
         with:
           # google service account client email
-          auth-client-email: 
+          auth-client-email: ${{ secrets.auth_client_email }}
           # google service account private key
-          auth-private-key: 
+          auth-private-key: ${{ secrets.auth_private_key }}
           # spreadsheet document id
-          spreadsheet: 
+          spreadsheet: ${{ secrets.spreadsheet }}
           # in case of multiple sheets specify one
-          sheet: # optional
+          sheet:  ${{ secrets.sheet }}
       
