@@ -1,15 +1,11 @@
 # bare minimal
 name: googlesheet
 
-on: 
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Test scenario tags'
+on:
+    push:
+      branches:
+        - master
+
 jobs:
     fetch:
       runs-on: ubuntu-latest
@@ -17,7 +13,7 @@ jobs:
         - id: googlesheet_actions
           uses: rjoydip/googlesheet-actions@0.1.1
           with:
-            sheet-id: ${{ secrets.SHEET_ID }}
+            sheet-id: 1OKQWbmX1c728Uk7aERe3zcp1zqcUarSgSDSDkYJro1g
         - id: echo
           uses: actions/github-script@v2
           with:
